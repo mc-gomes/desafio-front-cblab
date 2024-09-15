@@ -10,19 +10,34 @@ import {BooksService} from '../../services/books.service';
   template: `
     <section>
       <form>
-        <input type="text" placeholder="Faça sua pesquisa" #filter/>
-        <button class="primary" type="button" (click)="filterResults(filter.value)">Buscar</button>
+        <input
+          type="text"
+          placeholder="Faça sua pesquisa"
+          #filter
+          (keyup.enter)="filterResults(filter.value)"
+        />
+        <button
+          class="primary"
+          type="button"
+          (click)="filterResults(filter.value)"
+        >
+          Buscar
+        </button>
       </form>
     </section>
     <section class="results">
-      <app-books-search></app-books-search>
+      <app-books-search
+        *ngFor="let book of filteredBooksList"
+        [book]="book"
+      ></app-books-search>
     </section>
   `,
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent {
 
-  filteredBooks: any[] = [];
+  filteredBooksList: any[] = [];
+  loading = false;
 
   constructor(private booksService: BooksService) {}
 
@@ -30,14 +45,15 @@ export class HomeComponent {
     if (!query) {
       return;
     }
+    this.loading = true;
 
     this.booksService.searchBooksByQuery(query).subscribe({
       next: (res: any) => {
-        this.filteredBooks = res.items || []
-        console.log('Livros encontrados:', this.filteredBooks)
+        this.filteredBooksList = res.items || [];
       },
-      error: (e) => console.log('Erro ao busscar livros', e)
+      error: (e) => console.log('Erro ao buscar livros', e)
     });
+
+    this.loading = false;
   }
-  
 }
