@@ -9,9 +9,11 @@ import { Component, Input } from '@angular/core';
   <div class="book-card">
     <div class="book-image">
       <img
-        *ngIf="book.volumeInfo.imageLinks?.thumbnail"
-        [src]="book.volumeInfo.imageLinks.thumbnail"
-        alt="{{ book.volumeInfo.title }}"
+        [src]="
+          book.volumeInfo.imageLinks?.thumbnail ||
+          '../../../assets/book_img.jpg'
+          "
+        alt="Capa do livro {{ book.volumeInfo.title }}"
       />
     </div>
     <div class="book-info">
