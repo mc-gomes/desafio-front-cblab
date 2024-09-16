@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
+import { BooksService } from '../../services/books.service';
 
 @Component({
   selector: 'app-books-search',
@@ -26,16 +27,23 @@ import { Component, Input } from '@angular/core';
         <strong>Descrição:</strong>
         {{
           book.volumeInfo.description
-            ? (book.volumeInfo.description | slice: 0:300) +
+            ? (book.volumeInfo.description | slice: 0:200) +
               (book.volumeInfo.description.length > 200 ? '...' : '')
               : 'Sem descrição'
             }}
       </p>
     </div>
+    <a class="favorite-link" (click)="addToFavorites(book)">Adicionar aos favoritos</a>
   </div>
   `,
   styleUrl: './books-search.component.css',
 })
 export class BooksSearchComponent {
   @Input() book!: any;
+
+  booksService = inject(BooksService);
+
+  addToFavorites(book: any): void {
+    this.booksService.addToFavoritesBooksList(book);
+  }
 }
