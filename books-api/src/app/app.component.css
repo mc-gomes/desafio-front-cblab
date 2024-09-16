@@ -3,12 +3,32 @@
 }
 
 header {
-    display: block;
-    height: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
     padding: var(--content-padding);
     box-shadow: 0px 5px 25px var(--shadow-color);
+    background: #302d8f;
+}
+
+nav {
+    display: flex;
+    gap: 20px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+nav a:hover {
+    text-decoration: underline;
 }
 
 .content {
     padding: var(--content-padding);
+    margin-top: 15px;
 }
