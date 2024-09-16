@@ -1,9 +1,8 @@
-
 .book-card {
     display: flex;
     align-items: flex-start;
     width: 80%;
-    max-width: 800px;
+    width: 600px;
     padding: 16px;
     border: 1px solid #ccc;
     border-radius: 8px;
@@ -18,8 +17,8 @@
 }
 
 .book-image img {
-    max-width: 100px;
-    height: 150px;
+    width: 150px;
+    height: 200px;
     border-radius: 4px;
     object-fit: cover;
 }
@@ -37,6 +36,7 @@
 .book-info p {
     margin: 4px 0;
     color: #555;
+    max-height: 120px;
 }
 
 .book-info strong {

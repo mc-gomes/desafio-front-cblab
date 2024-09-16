@@ -6,6 +6,7 @@ import { Component, Input } from '@angular/core';
   standalone: true,
   imports: [CommonModule],
   template: `
+  <div class="book-card">
     <div class="book-image">
       <img
         *ngIf="book.volumeInfo.imageLinks?.thumbnail"
@@ -21,9 +22,15 @@ import { Component, Input } from '@angular/core';
       </p>
       <p>
         <strong>Descrição:</strong>
-        {{ book.volumeInfo.description || 'Sem descrição disponível' }}
+        {{
+          book.volumeInfo.description
+            ? (book.volumeInfo.description | slice: 0:300) +
+              (book.volumeInfo.description.length > 200 ? '...' : '')
+              : 'Sem descrição'
+            }}
       </p>
     </div>
+  </div>
   `,
   styleUrl: './books-search.component.css',
 })
