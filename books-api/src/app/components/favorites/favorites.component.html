@@ -1,1 +1,54 @@
-<p>favorites works!</p>
+<section>
+  <form>
+    <input type="text" placeholder="Filtre seus livros" />
+    <button class="primary" type="button">Filtrar</button>
+  </form>
+  <h3>Seus livros favoritados:</h3>
+</section>
+
+<section class="books-list">
+  <div class="book-card" *ngFor="let book of favoriteBooksList">
+    <div class="book-content">
+      <div class="book-image">
+        <img
+          [src]="book.thumbnail || '../../../assets/book_img.jpg'"
+          alt="Capa do livro {{ book.title }}"
+        />
+      </div>
+      <div class="book-info">
+        <h3>{{ book.title }}</h3>
+        <p>
+          <strong>Autor(es):</strong>
+          {{ book.authors?.join(", ") || "Desconhecido" }}
+        </p>
+        <p>
+          <strong>Descrição:</strong>
+          {{
+            book.description
+              ? (book.description | slice : 0 : 200) +
+                (book.description.length > 200 ? "..." : "")
+              : "Sem descrição"
+          }}
+        </p>
+        <a class="favorite-link">Remover dos favoritos</a>
+      </div>
+
+      <div class="book-rating-notes">
+        <div class="book-rating">
+          <p>
+            <strong>Sua avaliação:</strong>
+            {{ book.rating || "Não avaliado" }} / 5
+          </p>
+        </div>
+        <div class="book-notes">
+          <label for="notes">Anotações:</label>
+          <textarea
+            id="notes"
+            placeholder="Escreva suas anotações aqui"
+          ></textarea>
+        </div>
+      </div>
+    </div>
+    <hr class="book-separator" />
+  </div>
+</section>

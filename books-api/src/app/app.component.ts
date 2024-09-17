@@ -10,7 +10,7 @@ import { HomeComponent } from './components/home/home.component';
     <main>
       <header class="brand-name">
         <nav>
-          <a [routerLink]="['/']">Página Inicial</a>
+          <a [routerLink]="['/']">Página de Busca</a>
           <span>|</span>
           <a [routerLink]="['/favorites']">Favoritos</a>
         </nav>

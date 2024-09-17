@@ -27,17 +27,19 @@ export class BooksService {
       id: this.idCounter++,
       volumeId: book.id,
       title: book.volumeInfo.title,
-      authors: book.volumeInfo.authors,
-      description: book.volumeInfo.description,
-      thumbnail: book.volumeInfo.imageLinks.thumbnail,
+      authors: book.volumeInfo.authors ?? ['Desconhecido'],
+      description: book.volumeInfo.description ?? 'Sem descrição',
+      thumbnail: book.volumeInfo.imageLinks?.thumbnail ?? '../../assets/book_img.jpg',
       publishedDate: book.volumeInfo.publishedDate,
-      rate: 0,
+      rating: 1,
       isFavorited: true,
       note: '',
     }
     this.favoriteBooksList.push(newBook);
+  }
 
-    console.log('Livro adicionado à sua lista de favoritos:', this.favoriteBooksList)
+  getAllFavoriteBooks(): FavoriteBookModel[] {
+    return this.favoriteBooksList;
   }
 
 }
