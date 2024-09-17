@@ -6,6 +6,10 @@
   <h3>Seus livros favoritados:</h3>
 </section>
 
+<section class="no-books" *ngIf="favoriteBooksList.length === 0">
+  <p>Nenhum livro adicionado</p>
+</section>
+
 <section class="books-list">
   <div class="book-card" *ngFor="let book of favoriteBooksList">
     <div class="book-content">

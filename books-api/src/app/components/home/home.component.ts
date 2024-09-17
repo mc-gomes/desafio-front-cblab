@@ -25,6 +25,14 @@ import {BooksService} from '../../services/books.service';
         </button>
       </form>
     </section>
+    <div class="search-message" *ngIf="loading">
+      <p>Buscando...</p>
+    </div>
+
+    <div class="search-message" *ngIf="!loading && filteredBooksList.length === 0">
+      <p>Nenhum resultado encontrado</p>
+    </div>
+
     <section class="results">
       <app-books-search
         *ngFor="let book of filteredBooksList"
