@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, Input } from '@angular/core';
 import { BooksService } from '../../services/books.service';
+import { NotificationService } from '../../services/notification.service';
 
 @Component({
   selector: 'app-books-search',
@@ -42,8 +43,18 @@ export class BooksSearchComponent {
   @Input() book!: any;
 
   booksService = inject(BooksService);
+  newBookAdded = true;
+
+  constructor(private notificationService: NotificationService) {}
 
   addToFavorites(book: any): void {
-    this.booksService.addToFavoritesBooksList(book);
+    this.newBookAdded = this.booksService.addToFavoritesBooksList(book);
+
+    if(!this.newBookAdded){
+      this.notificationService.showNotification('Este livro já foi adicionado.', 'error')
+      return
+    }
+
+    this.notificationService.showNotification('Livro adicionado à sua lista!', 'success')
   }
 }

@@ -1,11 +1,18 @@
 import { Component } from '@angular/core';
 import { RouterLink, RouterOutlet, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
+import { NotificationComponent } from './components/notification/notification.component';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [HomeComponent, RouterModule, RouterLink, RouterOutlet],
+  imports: [
+    HomeComponent,
+    RouterModule,
+    RouterLink,
+    RouterOutlet,
+    NotificationComponent,
+  ],
   template: `
     <main>
       <header class="brand-name">
@@ -16,11 +23,12 @@ import { HomeComponent } from './components/home/home.component';
         </nav>
       </header>
       <section class="content">
+        <app-notification></app-notification>
         <router-outlet></router-outlet>
       </section>
     </main>
   `,
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.css',
 })
 export class AppComponent {
   title = 'books-api';

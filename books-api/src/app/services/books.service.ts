@@ -22,7 +22,16 @@ export class BooksService {
     return this.http.get(this.API_URL, { params });
   }
 
-  addToFavoritesBooksList(book: any) {
+  isBookAdded(bookId: string){
+    const bookInList = this.favoriteBooksList.find((book) => book.volumeId === bookId)
+    return bookInList
+  }
+
+  addToFavoritesBooksList(book: any): boolean {
+    if(this.isBookAdded(book.id)){
+      return false
+    }
+
     const newBook: FavoriteBookModel = {
       id: this.idCounter++,
       volumeId: book.id,
@@ -36,6 +45,8 @@ export class BooksService {
       note: '',
     }
     this.favoriteBooksList.push(newBook);
+
+    return true;
   }
 
   getAllFavoriteBooks(): FavoriteBookModel[] {
