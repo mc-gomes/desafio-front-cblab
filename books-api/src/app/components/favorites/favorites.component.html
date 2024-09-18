@@ -2,7 +2,7 @@
   <form>
     <input type="text" placeholder="Filtre seus livros" #filter />
     <button class="primary" type="button" (click)="filterInFavorites(filter.value)">Filtrar</button>
-    <button type="button" (click)="filter.value = ''; clearSearch()">Limpar</button>
+    <button type="button" class="clear-button" (click)="filter.value = ''; clearSearch()">Limpar</button>
   </form>
   <h3>Resultados encontrados: {{filteredFavoriteBooksList.length}} </h3>
 </section>

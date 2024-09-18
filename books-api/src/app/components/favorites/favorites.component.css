@@ -20,6 +20,16 @@ button {
     color: white;
     border-radius: 8px;
     margin-left: 5px;
+    cursor: pointer;
+}
+
+button.clear-button {
+    background-color: transparent;
+    border: 2px solid var(--primary-color);
+    color: var(--primary-color);
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
 }
 
 .no-books {
