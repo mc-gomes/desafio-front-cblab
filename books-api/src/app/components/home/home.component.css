@@ -31,6 +31,16 @@ button {
   border-radius: 8px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
   cursor: pointer;
+  margin-left: 5px;
+}
+
+button.clear-button {
+  background-color: transparent;
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
 }
 
 .results-message {

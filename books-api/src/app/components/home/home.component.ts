@@ -23,6 +23,14 @@ import { BooksService } from '../../services/books.service';
         >
           Buscar
         </button>
+
+        <button
+          type="button"
+          class="clear-button"
+          (click)="filter.value = ''"
+        >
+          Limpar
+        </button>
       </form>
     </section>
     <div class="results-message" *ngIf="loading">
