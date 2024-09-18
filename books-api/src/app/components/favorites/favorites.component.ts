@@ -86,4 +86,9 @@ export class FavoritesComponent {
     this.filteredFavoriteBooksList = this.favoriteBooksList;
   }
 
+  onEnter(event: Event, query: string) {
+    event.preventDefault();
+    this.filterInFavorites(query);
+  }
+
 }

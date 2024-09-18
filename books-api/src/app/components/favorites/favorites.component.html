@@ -1,6 +1,11 @@
 <section>
   <form>
-    <input type="text" placeholder="Filtre seus livros" #filter />
+    <input
+      type="text"
+      placeholder="Filtre seus livros"
+      #filter
+      (keydown.enter)="onEnter($event, filter.value)"
+    />
     <button
       class="primary"
       type="button"

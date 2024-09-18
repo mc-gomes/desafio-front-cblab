@@ -14,7 +14,7 @@ import { BooksService } from '../../services/books.service';
           type="text"
           placeholder="Faça sua pesquisa"
           #filter
-          (keyup.enter)="filterResults(filter.value)"
+          (keydown.enter)="onEnter($event, filter.value)"
         />
         <button
           class="primary"
@@ -84,6 +84,11 @@ export class HomeComponent {
   totalItems: number = 0;
 
   constructor(private booksService: BooksService) {}
+
+  onEnter(event: Event, query: string) {
+    event.preventDefault(); // para evitar que a página seja recarregada e apague o input
+    this.filterResults(query);
+  }
 
   filterResults(query: string, page: number = 1) {
     if (!query) {
