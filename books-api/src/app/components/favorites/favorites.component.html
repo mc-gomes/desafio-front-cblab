@@ -1,13 +1,14 @@
 <section>
   <form>
     <input type="text" placeholder="Filtre seus livros" #filter />
-    <button class="primary" type="button" (click)="filterFavorites(filter.value)">Filtrar</button>
+    <button class="primary" type="button" (click)="filterInFavorites(filter.value)">Filtrar</button>
+    <button type="button" (click)="filter.value = ''; clearSearch()">Limpar</button>
   </form>
   <h3>Resultados encontrados: {{filteredFavoriteBooksList.length}} </h3>
 </section>
 
 <section class="no-books" *ngIf="filteredFavoriteBooksList.length === 0">
-  <p>Nenhum livro adicionado</p>
+  <p>{{ filter.value ? 'Nenhum livro encontrado' : 'Nenhum livro adicionado'}}</p>
 </section>
 
 <section class="books-list">

@@ -77,12 +77,16 @@ export class FavoritesComponent {
     this.removeBookSubject.next(bookId);
   }
 
-  filterFavorites(query: string){
+  filterInFavorites(query: string){
     this.favoriteBooksList = this.booksService.filterFavoriteBooks(query);
 
     this.tempRatings = this.favoriteBooksList.map(book => book.rating || 1);
     this.tempNotes = this.favoriteBooksList.map(book => book.note || '');
 
     this.filteredFavoriteBooksList = this.favoriteBooksList;
+  }
+
+  clearSearch() {
+    this.filterInFavorites('');
   }
 }
