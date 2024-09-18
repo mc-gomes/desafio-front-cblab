@@ -16,10 +16,12 @@ export class BooksService {
 
   private API_URL = 'https://www.googleapis.com/books/v1/volumes'
   
-  searchBooksByQuery(query: string): Observable<any> {
+  searchBooksByQuery(query: string, startIndex: number = 0, maxResults: number = 10): Observable<any> {
     const params = {
-      q: query
-    }
+      q: query,
+      startIndex: startIndex.toString(),
+      maxResults: maxResults.toString(),
+    };
     return this.http.get(this.API_URL, { params });
   }
 
