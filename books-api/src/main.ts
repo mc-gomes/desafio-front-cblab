@@ -2,7 +2,7 @@ import { bootstrapApplication, provideProtractorTestingSupport } from '@angular/
 import { appConfig } from './app/app.config';
 import { AppComponent } from './app/app.component';
 import { provideRouter } from '@angular/router';
-import routeConfig from './app/routes';
+import routeConfig from './app/routes/routes';
 import { provideHttpClient } from '@angular/common/http';
 
 bootstrapApplication(AppComponent, {
