@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { FavoriteBookModel } from '../models/models';
 
 @Injectable({
@@ -62,4 +62,10 @@ export class BooksService {
     sessionStorage.setItem('favoriteBooks', JSON.stringify(this.favoriteBooksList));
   }
 
+  removeBookFromFavorites(bookId: string): Observable<any> {
+    this.favoriteBooksList = this.favoriteBooksList.filter(book => book.volumeId !== bookId);
+    this.saveFavoriteBooksToStorage();
+
+    return of(true);
+  }
 }

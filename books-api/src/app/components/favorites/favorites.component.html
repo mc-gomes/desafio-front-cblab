@@ -3,7 +3,7 @@
     <input type="text" placeholder="Filtre seus livros" />
     <button class="primary" type="button">Filtrar</button>
   </form>
-  <h3>Seus livros favoritados:</h3>
+  <h3>Seus livros favoritados: {{favoriteBooksList.length}} </h3>
 </section>
 
 <section class="no-books" *ngIf="favoriteBooksList.length === 0">
@@ -34,7 +34,7 @@
               : "Sem descrição"
           }}
         </p>
-        <a class="favorite-link">Remover dos favoritos</a>
+        <a class="favorite-link" (click)="onRemoveBook(book.volumeId)">Remover dos favoritos</a>
       </div>
 
       <div class="book-rating-notes">
@@ -46,8 +46,9 @@
               id="rating"
               min="1"
               max="5"
-              [(ngModel)]="book.rating" 
+              [(ngModel)]="book.rating"
             />
+            / 5
           </p>
         </div>
         <div class="book-notes">
