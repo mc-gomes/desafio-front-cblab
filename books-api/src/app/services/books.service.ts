@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { FavoriteBookModel } from '../models/models';
+import { normalizeText } from '../utils/utils';
 
 @Injectable({
   providedIn: 'root'
@@ -80,14 +81,16 @@ export class BooksService {
   }
 
   filterFavoriteBooks(query: string): FavoriteBookModel[] {
-    if (!query) {
+    const normalizedQuery = normalizeText(query);
+
+    if (!normalizedQuery) {
       return this.favoriteBooksList;
     }
 
     return this.favoriteBooksList.filter(book =>
-      book.title.toLowerCase().includes(query.toLowerCase()) ||
+      normalizeText(book.title).includes(normalizedQuery) ||
       (book.authors && book.authors.some(author =>
-        author.toLowerCase().includes(query.toLowerCase())
+        normalizeText(author).includes(normalizedQuery)
       ))
     );
   }
