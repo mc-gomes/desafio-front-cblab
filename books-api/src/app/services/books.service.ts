@@ -68,4 +68,14 @@ export class BooksService {
 
     return of(true);
   }
+
+  updateFavoriteBook(updatedBook: FavoriteBookModel) {
+    const index = this.favoriteBooksList.findIndex(book => book.id === updatedBook.id);
+
+    if (index !== -1) {
+      this.favoriteBooksList[index] = updatedBook;
+
+      this.saveFavoriteBooksToStorage();
+    }
+  }
 }

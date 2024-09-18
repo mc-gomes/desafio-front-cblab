@@ -17,14 +17,17 @@ import { NotificationService } from '../../services/notification.service';
 })
 export class FavoritesComponent {
   
-  favoriteBooksList: FavoriteBookModel[] = []
+  favoriteBooksList: FavoriteBookModel[] = [];
+  tempRatings: number[] = [];
+  tempNotes: string[] = [];
+  
   booksService = inject(BooksService);
   notificationService = inject(NotificationService);
 
   private removeBookSubject = new Subject<string>();
   private cdRef = inject(ChangeDetectorRef);
 
-  constructor(){
+  constructor() {
     this.loadFavoriteBooks();
 
     this.removeBookSubject.pipe(
@@ -39,7 +42,7 @@ export class FavoritesComponent {
             }),
             catchError(error => {
               this.notificationService.showNotification('Erro ao remover livro dos favoritos.', 'error');
-              console.log(error)
+              console.log(error);
               return of();
             })
           );
@@ -50,12 +53,23 @@ export class FavoritesComponent {
     ).subscribe();
   }
 
-  loadFavoriteBooks(){
+  loadFavoriteBooks() {
     this.favoriteBooksList = this.booksService.getAllFavoriteBooks();
+
+    this.tempRatings = this.favoriteBooksList.map(book => book.rating || 1);
+    this.tempNotes = this.favoriteBooksList.map(book => book.note || '');
+  }
+
+  saveChanges(index: number) {
+    this.favoriteBooksList[index].rating = this.tempRatings[index];
+    this.favoriteBooksList[index].note = this.tempNotes[index];
+
+    this.booksService.updateFavoriteBook(this.favoriteBooksList[index]);
+
+    this.notificationService.showNotification('Avaliação e anotações salvas com sucesso.', 'success');
   }
 
   onRemoveBook(bookId: string) {
     this.removeBookSubject.next(bookId);
   }
-
 }

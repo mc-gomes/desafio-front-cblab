@@ -11,7 +11,7 @@
 </section>
 
 <section class="books-list">
-  <div class="book-card" *ngFor="let book of favoriteBooksList">
+  <div class="book-card" *ngFor="let book of favoriteBooksList; let i = index">
     <div class="book-content">
       <div class="book-image">
         <img
@@ -46,7 +46,7 @@
               id="rating"
               min="1"
               max="5"
-              [(ngModel)]="book.rating"
+              [(ngModel)]="tempRatings[i]"
             />
             / 5
           </p>
@@ -56,9 +56,10 @@
           <textarea
             id="notes"
             placeholder="Escreva suas anotações aqui"
-            [(ngModel)]="book.note"
+            [(ngModel)]="tempNotes[i]"
           ></textarea>
         </div>
+        <button (click)="saveChanges(i)">Salvar</button>
       </div>
     </div>
     <hr class="book-separator" />
