@@ -55,6 +55,6 @@ export class BooksSearchComponent {
       return
     }
 
-    this.notificationService.showNotification('Livro adicionado à sua lista!', 'success')
+    this.notificationService.showNotification('Novo livro adicionado à sua lista!', 'success')
   }
 }

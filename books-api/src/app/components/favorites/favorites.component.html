@@ -41,7 +41,13 @@
         <div class="book-rating">
           <p>
             <strong>Sua avaliação:</strong>
-            {{ book.rating || "Não avaliado" }} / 5
+            <input
+              type="number"
+              id="rating"
+              min="1"
+              max="5"
+              [(ngModel)]="book.rating" 
+            />
           </p>
         </div>
         <div class="book-notes">
@@ -49,6 +55,7 @@
           <textarea
             id="notes"
             placeholder="Escreva suas anotações aqui"
+            [(ngModel)]="book.note"
           ></textarea>
         </div>
       </div>
