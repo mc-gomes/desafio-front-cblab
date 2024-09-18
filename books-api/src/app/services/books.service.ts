@@ -23,8 +23,7 @@ export class BooksService {
   }
 
   isBookAdded(bookId: string){
-    const bookInList = this.favoriteBooksList.find((book) => book.volumeId === bookId)
-    return bookInList
+    return this.favoriteBooksList.some((book) => book.volumeId === bookId)
   }
 
   addToFavoritesBooksList(book: any): boolean {
@@ -46,11 +45,21 @@ export class BooksService {
     }
     this.favoriteBooksList.push(newBook);
 
+    this.saveFavoriteBooksToStorage();
+
     return true;
   }
 
   getAllFavoriteBooks(): FavoriteBookModel[] {
+    const booksFromStorage = sessionStorage.getItem('favoriteBooks');
+    if (booksFromStorage) {
+      this.favoriteBooksList = JSON.parse(booksFromStorage);
+    }
     return this.favoriteBooksList;
+  }
+
+  private saveFavoriteBooksToStorage(): void {
+    sessionStorage.setItem('favoriteBooks', JSON.stringify(this.favoriteBooksList));
   }
 
 }

@@ -18,6 +18,10 @@ export class FavoritesComponent {
   booksService = inject(BooksService);
 
   constructor(){
+    this.loadFavoriteBooks();
+  }
+
+  loadFavoriteBooks(){
     this.favoriteBooksList = this.booksService.getAllFavoriteBooks();
   }
 }
