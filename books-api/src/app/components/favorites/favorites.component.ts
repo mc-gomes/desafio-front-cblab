@@ -22,7 +22,7 @@ export class FavoritesComponent {
   tempNotes: string[] = [];
 
   filteredFavoriteBooksList: FavoriteBookModel[] = [];
-  
+
   booksService = inject(BooksService);
   notificationService = inject(NotificationService);
 
@@ -86,7 +86,4 @@ export class FavoritesComponent {
     this.filteredFavoriteBooksList = this.favoriteBooksList;
   }
 
-  clearSearch() {
-    this.filterInFavorites('');
-  }
 }
