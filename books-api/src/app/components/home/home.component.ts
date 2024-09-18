@@ -37,18 +37,18 @@ import { BooksService } from '../../services/books.service';
       <p>Buscando...</p>
     </div>
 
-    <div class="results-message" *ngIf="!loading && filteredBooksList.length === 0">
+    <div class="results-message" *ngIf="!loading && booksSearchResults.length === 0">
       <p>Nenhum resultado encontrado</p>
     </div>
 
     <section class="results">
       <app-books-search
-        *ngFor="let book of filteredBooksList"
+        *ngFor="let book of booksSearchResults"
         [book]="book"
       ></app-books-search>
     </section>
 
-    <div *ngIf="filteredBooksList.length > 0" class="pagination-container">
+    <div *ngIf="booksSearchResults.length > 0" class="pagination-container">
       <button
         *ngIf="currentPage > 1"
         (click)="changePage(currentPage - 1)"
@@ -76,7 +76,7 @@ import { BooksService } from '../../services/books.service';
 })
 export class HomeComponent {
 
-  filteredBooksList: any[] = [];
+  booksSearchResults: any[] = [];
   loading = false;
   query: string = '';
   currentPage: number = 1;
@@ -96,7 +96,7 @@ export class HomeComponent {
 
     this.booksService.searchBooksByQuery(query, startIndex, this.itemsPerPage).subscribe({
       next: (res: any) => {
-        this.filteredBooksList = res.items || [];
+        this.booksSearchResults = res.items || [];
         this.totalItems = res.totalItems || 0;
       },
       error: (e) => console.log('Erro ao buscar livros', e),

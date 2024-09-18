@@ -1,8 +1,22 @@
 <section>
   <form>
     <input type="text" placeholder="Filtre seus livros" #filter />
-    <button class="primary" type="button" (click)="filterInFavorites(filter.value)">Filtrar</button>
-    <button type="button" class="clear-button" (click)="filter.value = ''; filterInFavorites('')">Limpar</button>
+    <button
+      class="primary"
+      type="button"
+      (click)="filterInFavorites(filter.value)"
+    >
+      Filtrar
+    </button>
+
+    <button
+      type="button"
+      class="clear-button"
+      (click)="filter.value = ''; filterInFavorites('')"
+    >
+      Limpar
+    </button>
+    
   </form>
   <h3>Resultados encontrados: {{filteredFavoriteBooksList.length}} </h3>
 </section>
