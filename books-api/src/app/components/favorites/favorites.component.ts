@@ -20,6 +20,8 @@ export class FavoritesComponent {
   favoriteBooksList: FavoriteBookModel[] = [];
   tempRatings: number[] = [];
   tempNotes: string[] = [];
+
+  filteredFavoriteBooksList: FavoriteBookModel[] = [];
   
   booksService = inject(BooksService);
   notificationService = inject(NotificationService);
@@ -58,6 +60,8 @@ export class FavoritesComponent {
 
     this.tempRatings = this.favoriteBooksList.map(book => book.rating || 1);
     this.tempNotes = this.favoriteBooksList.map(book => book.note || '');
+
+    this.filteredFavoriteBooksList = this.favoriteBooksList;
   }
 
   saveChanges(index: number) {
@@ -71,5 +75,9 @@ export class FavoritesComponent {
 
   onRemoveBook(bookId: string) {
     this.removeBookSubject.next(bookId);
+  }
+
+  filterFavorites(query: string){
+    this.favoriteBooksList = this.booksService.filterFavoriteBooks(query);
   }
 }

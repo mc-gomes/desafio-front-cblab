@@ -1,17 +1,17 @@
 <section>
   <form>
-    <input type="text" placeholder="Filtre seus livros" />
-    <button class="primary" type="button">Filtrar</button>
+    <input type="text" placeholder="Filtre seus livros" #filter />
+    <button class="primary" type="button" (click)="filterFavorites(filter.value)">Filtrar</button>
   </form>
-  <h3>Seus livros favoritados: {{favoriteBooksList.length}} </h3>
+  <h3>Resultados encontrados: {{filteredFavoriteBooksList.length}} </h3>
 </section>
 
-<section class="no-books" *ngIf="favoriteBooksList.length === 0">
+<section class="no-books" *ngIf="filteredFavoriteBooksList.length === 0">
   <p>Nenhum livro adicionado</p>
 </section>
 
 <section class="books-list">
-  <div class="book-card" *ngFor="let book of favoriteBooksList; let i = index">
+  <div class="book-card" *ngFor="let book of filteredFavoriteBooksList; let i = index">
     <div class="book-content">
       <div class="book-image">
         <img

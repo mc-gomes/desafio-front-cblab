@@ -78,4 +78,17 @@ export class BooksService {
       this.saveFavoriteBooksToStorage();
     }
   }
+
+  filterFavoriteBooks(query: string): FavoriteBookModel[] {
+    if (!query) {
+      return this.favoriteBooksList;
+    }
+
+    return this.favoriteBooksList.filter(book =>
+      book.title.toLowerCase().includes(query.toLowerCase()) ||
+      (book.authors && book.authors.some(author =>
+        author.toLowerCase().includes(query.toLowerCase())
+      ))
+    );
+  }
 }
